@@ -34,18 +34,27 @@ export async function getAlgoBalance(address: string): Promise<AssetBalance> {
 /** Fetch balances for opted-in assets (optionally filter list of IDs). */
 export async function getAssetBalances(address: string, onlyAssetIds?: number[]): Promise<AssetBalance[]> {
   const acct = await indexer.lookupAccountByID(address).do();
-  const holdings = (acct?.account?.assets ?? []) as Array<{ assetId: number; amount: number }>;
+  const holdings = (acct?.account?.assets ?? []) as Array<{ assetId: bigint; amount: bigint }>;
   const out: AssetBalance[] = [];
   for (const h of holdings) {
-    if (onlyAssetIds && !onlyAssetIds.includes(h["asset-id"] ?? h.assetId)) continue;
-    const id = (h as any)["asset-id"] ?? h.assetId;
-    const decimals = await getAssetDecimals(id);
+    const id = Number(h.assetId); // Convert assetId from bigint to number
+    const amount = Number(h.amount); // Convert amount from bigint to number
+    if (onlyAssetIds && !onlyAssetIds.includes(id)) continue;
+
+    // Fetch asset details
+    const assetInfo = await indexer.lookupAssetByID(id).do();
+    const name = assetInfo?.asset?.params?.name || "Unknown Asset";
+    const unitName = assetInfo?.asset?.params?.unitName || "";
+    const decimals = assetInfo?.asset?.params?.decimals || 0;
+
     out.push({
       assetId: id,
-      amount: toDisplay(h.amount, decimals),
-      rawAmount: String(h.amount),
+      amount: toDisplay(amount, decimals),
+      rawAmount: String(amount),
       decimals,
       isAlgo: false,
+      name,
+      unitName,
     });
   }
   return out;

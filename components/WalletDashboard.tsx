@@ -29,7 +29,7 @@ export default function WalletDashboard() {
               "Loading..."
             ) : (
               <span className="text-2xl font-semibold">
-                {algoBalance.toFixed(6)} ALGO
+                {Number(algoBalance).toFixed(6)} ALGO
               </span>
             )}
           </CardContent>
@@ -45,16 +45,31 @@ export default function WalletDashboard() {
             {loading ? (
               "Loading..."
             ) : assets.length > 0 ? (
-              <ul className="divide-y divide-gray-200">
-                {assets.map((asset) => (
-                  <li key={asset.id} className="py-2 flex justify-between">
-                    <span>{asset.name}</span>
-                    <span>
-                      {(asset.amount / 10 ** asset.decimals).toFixed(asset.decimals)}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              <table className="w-full text-left">
+                <thead>
+                  <tr>
+                    <th className="py-2">Unit Name</th>
+                    <th className="py-2">ASA Name</th>
+                    <th className="py-2">ASA ID</th>
+                    <th className="py-2">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {assets.map((asset) => (
+                    <tr key={asset.id} className="border-b">
+                      <td className="py-2">{asset.unitName}</td>
+                      <td className="py-2">{asset.name}</td>
+                      <td className="py-2">{asset.id}</td>
+                      <td className="py-2">
+                        {Number(asset.rawAmount / 10 ** asset.decimals).toLocaleString(undefined, {
+                          minimumFractionDigits: 0,
+                          maximumFractionDigits: asset.decimals,
+                        })}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             ) : (
               <div>No assets found.</div>
             )}

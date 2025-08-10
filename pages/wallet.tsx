@@ -1,8 +1,8 @@
 import dynamic from "next/dynamic";
 
 // Update the import path if the file is located elsewhere, for example:
-const ConnectButton = dynamic(() => import("../../components/ConnectButton"), { ssr: false });
-const WalletDashboard = dynamic(() => import("../../components/WalletDashboard"), { ssr: false });
+const ConnectButton = dynamic(() => import("../components/ConnectButton"), { ssr: false });
+const WalletDashboard = dynamic(() => import("../components/WalletDashboard"), { ssr: false });
 
 export default function WalletPage() {
   return (

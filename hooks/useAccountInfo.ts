@@ -1,11 +1,14 @@
 // hooks/useAccountInfo.ts
 import { useState, useEffect } from "react";
 import { useWallet } from "@txnlab/use-wallet-react";
+import { getAlgoBalance, getAssetBalances } from "../services/balances";
 
 export interface Asset {
   id: number;
   name: string;
+  unitName: string;
   amount: number;
+  rawAmount: number;
   decimals: number;
 }
 export interface AccountInfo {
@@ -27,33 +30,15 @@ export function useAccountInfo() {
 
     (async () => {
       try {
-        const res = await fetch(`/api/account/${address}`);
-        if (!res.ok) throw new Error(await res.text());
-        const info = await res.json();
+        // Fetch ALGO balance
+        const algoBalanceObj = await getAlgoBalance(address);
+        const algoBalance = Number(algoBalanceObj.amount); // Extract and convert amount to number
 
-        // 1) Algo balance
-        const algoBalance = Number(info.amount) / 1e6;
+        // Fetch asset balances
+        const assetBalances = await getAssetBalances(address);
+        const assets = assetBalances.map(({ assetId, unitName, rawAmount, ...rest }: any) => ({ id: assetId, unitName, rawAmount: Number(rawAmount), ...rest })); // Map to Asset type
 
-        // 2) Map assets directly from info.assets
-        const assets: Asset[] = (info.assets || [])
-          .filter((a: any) => Number(a.amount) > 0)
-          .map((a: any) => {
-            const params   = a.params || {};
-            const id       = typeof a["asset-id"] === "string"
-              ? parseInt(a["asset-id"], 10)
-              : a["asset-id"];
-            const decimals = typeof params.decimals === "string"
-              ? parseInt(params.decimals, 10)
-              : params.decimals || 0;
-            const name     = params["unit-name"] || params.name || `ASA ${id}`;
-            const rawAmt   = typeof a.amount === "string"
-              ? parseInt(a.amount, 10)
-              : a.amount;
-            const amount   = rawAmt / 10 ** decimals;
-
-            return { id, name, amount, decimals };
-          });
-
+        // Combine balances into account info
         setData({ algoBalance, assets });
       } catch (err: any) {
         console.error("useAccountInfo:", err);
