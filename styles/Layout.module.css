@@ -1,0 +1,88 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header & banner */
+.header {
+  background: #2c2c2c;
+  padding: .5rem 2rem;
+}
+.banner {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Top bar holds wallet button and hamburger */
+.topBar {
+  display: flex;
+  align-items: center;
+  background: #2c2c2c;
+  padding: .5rem 2rem;
+  position: relative;
+}
+
+.spacer {
+  flex: 1;
+}
+
+/* Wallet button */
+.wallet {
+  margin-right: 1rem;
+}
+
+/* Hamburger button */
+.hamburger {
+  background: none;
+  border: 2px;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+/* Dropdown menu */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 1rem;
+  background: #2c2c2c;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.dropdownLink {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  color: #fff;
+  font-size: 1.25rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.dropdownLink:hover {
+  background: #4c4c4c;
+}
+.active {
+  font-weight: bold;
+  background: #3c3c3c;
+}
+
+/* Main & footer */
+.main {
+  flex: 1;
+  padding: 2rem;
+  background: #fff;
+}
+
+.footer {
+  background: #2c2c2c;
+  color: #eee;
+  text-align: center;
+  padding: 0.75rem;
+  font-size: 0.875rem;
+}

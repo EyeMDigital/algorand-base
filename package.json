@@ -1,0 +1,36 @@
+{
+  "name": "emd-template",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@blockshake/defly-connect": "^1.2.1",
+    "@perawallet/connect": "^1.4.2",
+    "@txnlab/use-wallet": "^4.3.0",
+    "@txnlab/use-wallet-react": "^4.3.0",
+    "algokit": "^0.0.1",
+    "algosdk": "^3.3.1",
+    "html2canvas": "^1.4.1",
+    "lute-connect": "^1.6.1",
+    "next": "^15.4.2",
+    "openai": "^5.10.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-rnd": "^10.5.2",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "@types/react": "^19.1.8",
+    "typescript": "^5.8.3"
+  }
+}

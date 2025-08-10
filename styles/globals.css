@@ -1,0 +1,92 @@
+:root {
+  --primary-color: #1e4f5b;
+  --accent-color: #1a354c;
+  --bg-color: #f7f9fa;
+  --text-color: #222;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+header {
+  background-color: var(--primary-color);
+  color: #fff;
+  text-align: center;
+  padding: 3em 1em 2em;
+}
+header h1 {
+  font-size: 3em;
+  margin-bottom: 0.2em;
+}
+header p {
+  font-style: italic;
+  color: #b3d4fc;
+  font-size: 1.2em;
+}
+.cta-button {
+  display: inline-block;
+  background-color: var(--accent-color);
+  color: #fff;
+  padding: 0.8em 1.5em;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 1em;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  border: none;
+}
+section {
+  padding: 2em 1.5em;
+  max-width: 700px;
+  margin: 0 auto;
+}
+h2 {
+  color: var(--primary-color);
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+.form-group {
+  margin-bottom: 1.5em;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+}
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  padding: 0.8em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+}
+textarea {
+  resize: vertical;
+}
+.result {
+  margin-top: 2em;
+  background: #fff;
+  padding: 1.5em;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+.result pre {
+  white-space: pre-wrap;
+}
+footer {
+  background-color: var(--primary-color);
+  color: #ccc;
+  text-align: center;
+  padding: 1.5em;
+  font-size: 0.9em;
+}
