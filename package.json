@@ -18,7 +18,7 @@
     "@txnlab/use-wallet": "^4.3.0",
     "@txnlab/use-wallet-react": "^4.3.0",
     "algokit": "^0.0.1",
-    "algosdk": "^3.3.1",
+    "algosdk": "^3.4.0",
     "html2canvas": "^1.4.1",
     "lute-connect": "^1.6.1",
     "next": "^15.4.2",

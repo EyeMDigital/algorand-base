@@ -1,17 +1,8 @@
-// pages/wallet.tsx
 import dynamic from "next/dynamic";
 
-// only load ConnectButton on the client
-const ConnectButton = dynamic(
-  () => import("../../components/ConnectButton"),
-  { ssr: false }
-);
-
-// you already did this for WalletDashboard
-const WalletDashboard = dynamic(
-  () => import("../../components/WalletDashboard"),
-  { ssr: false }
-);
+// Update the import path if the file is located elsewhere, for example:
+const ConnectButton = dynamic(() => import("../../components/ConnectButton"), { ssr: false });
+const WalletDashboard = dynamic(() => import("../../components/WalletDashboard"), { ssr: false });
 
 export default function WalletPage() {
   return (
